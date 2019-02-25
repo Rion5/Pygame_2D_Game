@@ -20,7 +20,7 @@ class Game:
         self.game_screen.fill(Game.WHITE_COLOR)
         pygame.display.set_caption(title)
 
-    def collision_logic(self, game_over: bool, player_win: bool):
+    def print_end_game_message(self, game_over: bool, player_win: bool):
         if game_over and player_win:
             text = FONT.render('You Won!', True, Game.BLACK_COLOR)
         elif game_over and player_win == False:
@@ -74,28 +74,28 @@ class Game:
             if player.detect_collision(enemy1):
                 game_over = True
                 player_win = False
-                self.collision_logic(game_over, player_win)
+                self.print_end_game_message(game_over, player_win)
                 break
             elif player.detect_collision(enemy2):
                 game_over = True
                 player_win = False
-                self.collision_logic(game_over, player_win)
+                self.print_end_game_message(game_over, player_win)
                 break
             elif player.detect_collision(enemy3):
                 game_over = True
                 player_win = False
-                self.collision_logic(game_over, player_win)
+                self.print_end_game_message(game_over, player_win)
                 break
             elif player.detect_collision(chest):
                 game_over = True
                 player_win = True
-                self.collision_logic(game_over, player_win)
+                self.print_end_game_message(game_over, player_win)
                 break
             # Update all game graphics
             pygame.display.update()
             # Tick the clock to update everything within the game
             CLOCK.tick(Game.REFRESH_RATE)
-        # Play again if the player won
+        # Play again if the player lost, otherwise close game
         if player_win == False:
             self.run_game_loop()
         else:
@@ -175,3 +175,5 @@ if __name__ == "__main__":
     # End Game
     pygame.quit()
     quit()
+
+# TODO: Refactor repeated code
