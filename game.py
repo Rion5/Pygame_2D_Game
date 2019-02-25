@@ -44,6 +44,7 @@ class Game:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     game_over = True
+                    player_win = True
                     # Detect when key is pressed down
                 elif event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_UP:
@@ -95,7 +96,7 @@ class Game:
             # Tick the clock to update everything within the game
             CLOCK.tick(Game.REFRESH_RATE)
         # Play again if the player won
-        if player_win != True:
+        if player_win == False:
             self.run_game_loop()
         else:
             return
